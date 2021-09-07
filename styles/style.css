@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display+SC&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    color: #222;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+
+}
+
+body {
+    background-color: #faf6ed;
+    color: #222;
+    /* Deixar a fonte mais limpa */
+    -webkit-font-smoothing: antialiased; 
+
+    display: grid;
+    /* A Página possui 4 colunas, a coluna principal terá no mínimo 300px de largura e no máximo 800px
+    A segunda coluna terá somente 120px
+    E as duas colunas laterais ficarão igualmente com 1fr, ou seja, com o que sobrar da largura da página*/
+    grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
+
+}
+
+/* Menu */
+
+.menu {
+    /* Menu ocupará do início da 3° Linha de colunas até a 5° linha da 4° coluna */
+    grid-column: 3 / 5;
+    margin: 2rem 0;
+    background-color: #FB5;
+}
+
+.menu ul {
+    display: flex;
+    /* Quebre caso não caiba dentro da UL */
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.menu li a {
+    display: block;
+    padding: 10px;
+    margin-right: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .875rem;
+    letter-spacing: .1em;
+}
+
+/* Grid Section */
+
+.grid-section {
+    grid-column: 2 / 4;
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 90px 300px 1fr;
+    grid-gap: 20px;
+    margin-bottom: 4rem;
+
+}
+
+/* Lista de Animais */
+
+.titulo {
+    font-family: 'Playfair Display SC', georgia;
+    font-size: 6rem;
+    line-height: 1;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    grid-column: 1 / 4;
+
+}
+
+.animais h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 1rem;
+    color: #e54;
+}
+
+.animais h2::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: #FB5;
+
+}
+
+.animais p {
+    font-family: Helvetica, Arial;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+
+}
+
+.animais-lista {
+    /* Definindo tamanho para a box de imagens dos animais de 370px
+    O que ultrapassar essa box no eixo Y, terá scroll */
+    height: 370px;
+    overflow-y: scroll;
+    grid-column: 2;
+}
+
+
+/* Estilizando o Scroll */
+.animais-lista::-webkit-scrollbar {
+    width: 18px;
+}
+
+/* Estilizando a Thumb do Scroll */
+.animais-lista::-webkit-scrollbar-thumb {
+    background: #FB5;
+    border-left: 4px solid #faf6ed;
+    border-right: 4px solid #faf6ed;
+}
+
+.animais-lista::-webkit-scrollbar-track {
+    background: #faf6ed;
+
+}
+
+.animais-descricao {
+    grid-column: 3;
+
+}
+
+.animais-descricao section {
+    margin-bottom: 3rem;
+
+}
+
+/* Faq */
+
+.faq-lista {
+    grid-column: 2 / 4;
+
+}
+
+.faq-lista dt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+    color: #E54;
+
+}
+
+.faq-lista dt::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: #FB5;
+
+}
+
+.faq-lista dd {
+    font-family: Helvetica, Arial;
+    margin-bottom: .5rem;
+    margin-left: 30px;
+
+}
+
+/* Contato */
+
+.mapa {
+    grid-column: 2;
+
+}
+
+.dados {
+    grid-column: 3;
+
+}
+
+.dados li {
+    margin-bottom: 1rem;
+    font-family: Helvetica, Arial;
+
+}
+
+.dados li::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-right: 10px;
+    background-color: #FB5;
+
+}
+
+/* Footer */
+
+.copy {
+    grid-column: 3 / 5;
+    margin-bottom: 2rem;
+    background-color: #FB5;
+}
+
+.copy p {
+    padding: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+    /* Em dispositivos com telas menores que 700px, nosso grid do body terá apenas 1 coluna */
+    body {
+        grid-template-columns: 1fr;
+    }
+    /* Nossos elementos ocuparão essa coluna */
+    .menu, .grid-section, .copy, .animais-lista {
+        grid-column: 1;
+    }
+    /* Nosso grid-section terá duas colunas */
+    .grid-section {
+        grid-template-columns: 100px 1fr;
+        grid-gap: 10px;
+    }
+    /* As sections ocuparão de ponta a ponta as colunas */
+    .faq-lista, .dados, .mapa {
+        grid-column: 1 / 3;
+    }
+    .grid-section h1 {
+        font-size: 3rem;
+    }
+    .menu {
+        margin-top: 0;
+    }
+    .copy {
+        margin-bottom: 0;
+    }
+    
+}
